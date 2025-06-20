@@ -4,63 +4,60 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f5f5f7;
+    background-color: #ffffff; /* Arc-like white background */
     margin: 0;
-    padding: 20px;
-    color: #1d1d1f;
+    padding: 20px; /* Padding for content if window is very small */
+    color: #1a1a1a; /* Strong dark gray for text */
     line-height: 1.6;
+    /* font-size: 16px; /* Explicit base font size if needed */
 }
 
 .container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background-color: #ffffff; /* Matches body, shadow defines it */
+    padding: 50px 60px; /* More generous padding */
+    border-radius: 16px; /* Softer corners */
+    box-shadow: 0 6px 24px rgba(0,0,0,0.07); /* Subtle shadow */
     width: 100%;
-    max-width: 550px;
+    max-width: 580px; /* Slightly adjusted max-width */
 }
 
 h1 {
-    font-size: 2.25em; /* Approx 36px */
-    font-weight: 600; /* Semibold */
-    color: inherit; /* Inherits #1d1d1f from body */
+    font-size: 2.75em; /* Approx 44px */
+    font-weight: 700; /* Bold */
+    color: inherit;
     text-align: center;
-    margin-bottom: 0.75em;
+    margin-bottom: 1.25em;
 }
 
 h2 {
-    font-size: 1.75em; /* Approx 28px */
-    font-weight: 600; /* Semibold */
-    color: inherit; /* Inherits #1d1d1f from body */
+    font-size: 1.625em; /* Approx 26px */
+    font-weight: 700; /* Bold */
+    color: inherit;
     text-align: center;
-    margin-top: 1.5em;
-    margin-bottom: 0.75em;
+    margin-top: 2em;
+    margin-bottom: 1em;
 }
 
 p {
-    font-size: 1em; /* Approx 16px, inherits line-height from body */
-    color: #333333; /* Slightly lighter than headings for less emphasis */
-    margin-bottom: 1em;
+    font-size: 1.0625em; /* Approx 17px for better readability */
+    color: #404040; /* Softer dark gray */
+    line-height: 1.7; /* Slightly more line height for 17px */
+    margin-bottom: 1.25em;
 }
 
 /* Ensure specific paragraph stylings like in messageDisplayArea are handled correctly */
 #messageDisplayArea p {
     margin: 0; /* Overrides the general p margin-bottom for this specific area */
-    color: #555; /* Specific color for retrieved message text */
+    color: #757575; /* This was already updated for placeholder, keep it or make it inherit from new p */
+    /* If inheriting, it will become #404040. Let's keep it specific for placeholder */
 }
 
-hr {
-    border: none;
-    height: 1px;
-    background-color: #e5e5e5; /* Lighter than #eee */
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
+/* hr ruleset removed */
 
 .section {
-    margin-bottom: 30px; /* Increased margin */
-    padding-bottom: 30px; /* Increased padding */
-    border-bottom: 1px solid #e5e5e5; /* Lighter border */
+    margin-bottom: 40px; /* Increased margin for separation */
+    padding-bottom: 10px; /* Reduced padding, rely on element margins within section */
+    /* border-bottom removed */
 }
 
 .section:last-child {
@@ -72,28 +69,28 @@ hr {
 textarea#messageInput,
 input#codeInput {
     font-family: inherit;
-    font-size: 1em;
-    padding: 12px 15px;
-    margin-bottom: 20px; /* Increased margin */
-    border: 1px solid #d1d1d1;
-    border-radius: 8px;
+    font-size: 1em; /* Matches base paragraph text */
+    padding: 15px 18px; /* Increased padding */
+    margin-bottom: 20px; /* Adequate spacing */
+    border: 1px solid #e0e0e0; /* Subtle border */
+    border-radius: 10px; /* Softer, modern look */
     width: 100%;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: #f9f9f9; /* Very light gray for slight distinction */
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 textarea#messageInput::placeholder,
 input#codeInput::placeholder {
-    color: #ababab;
-    opacity: 1;
+    color: #999999; /* Clear but not too faint gray */
+    opacity: 1; /* Ensure visibility */
 }
 
 textarea#messageInput:focus,
 input#codeInput:focus {
-    border-color: #007aff;
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
     outline: none;
+    border-color: #007aff; /* Clear accent */
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15); /* Subtle glow */
 }
 
 textarea#messageInput {
@@ -103,65 +100,76 @@ textarea#messageInput {
 
 button {
     font-family: inherit;
-    font-size: 1.0625em; /* 17px */
-    font-weight: 500; /* Medium */
-    padding: 14px 20px;
-    background-color: #007aff; /* Apple blue */
+    font-size: 1em; /* Or 1.0625em for 17px, matching p if p is 17px */
+    font-weight: 600; /* Semibold */
+    padding: 15px 25px; /* Generous padding */
+    background-color: #1a1a1a; /* Strong dark call to action */
     color: #ffffff;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px; /* Match inputs */
     cursor: pointer;
-    display: block; /* Already block, ensure it stays */
+    display: block;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 20px; /* Increased margin */
-    transition: background-color 0.2s ease-in-out;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: background-color 0.15s ease-in-out, transform 0.1s ease-in-out;
 }
 
 button:hover {
-    background-color: #005ec4; /* Darker blue */
+    background-color: #333333; /* Slightly lighter for hover */
 }
 
 button:active {
-    background-color: #00408a; /* Even darker blue */
+    background-color: #000000; /* Darker for active */
+    transform: scale(0.98); /* Subtle press effect */
 }
 
 button:disabled {
-    background-color: #e9ecef;
-    color: #adb5bd;
+    background-color: #f0f0f0;
+    color: #aaaaaa;
     cursor: not-allowed;
+    transform: none; /* No press effect when disabled */
 }
 
 .code-display {
     text-align: center;
-    padding: 12px 15px;
-    background-color: #f8f9fa; /* Lighter and more neutral */
-    border-radius: 8px; /* Match other elements */
-    margin-top: 20px;
+    padding: 15px 18px; /* Consistent with inputs */
+    background-color: #f9f9f9; /* Consistent with inputs */
+    border: 1px solid #e0e0e0; /* Consistent with inputs */
+    border-radius: 10px; /* Consistent with inputs */
+    margin-top: 25px; /* Increased spacing */
+    margin-bottom: 20px; /* Added for consistency if needed */
+}
+
+/* Styling for the <p> tag inside .code-display */
+.code-display p {
+    margin-bottom: 0.5em; /* Space between "Your 9-digit code:" and the code itself */
+    font-size: 0.9em; /* Slightly smaller for the descriptive text */
+    color: #555555; /* Muted color for descriptive text */
 }
 
 #accessCodeDisplay {
-    font-size: 1.75em; /* Prominent size */
-    font-weight: 600; /* Semibold */
-    color: #1d1d1f; /* Default dark color, JS will change for success/error */
-    letter-spacing: 3px; /* Slightly increased spacing */
-    /* Add small margin if p tag isn't enough, e.g., margin: 5px 0; */
+    font-size: 2em; /* Prominent and easily readable */
+    font-weight: 700; /* Bold */
+    color: #1a1a1a; /* Strong dark color, matches h1 */
+    letter-spacing: 3px; /* Distinct digits */
 }
 
 #messageDisplayArea {
-    padding: 15px 20px; /* Adjusted padding */
-    background-color: #f8f9fa; /* Consistent with code-display */
-    border: 1px solid #e5e5e5; /* Keep subtle border */
-    border-radius: 8px; /* Match other elements */
-    min-height: 60px; /* Slightly increased min-height */
+    padding: 15px 18px; /* Consistent with inputs */
+    background-color: #f9f9f9; /* Consistent with inputs */
+    border: 1px solid #e0e0e0; /* Consistent with inputs */
+    border-radius: 10px; /* Consistent with inputs */
+    min-height: 80px; /* Adequate min-height */
     word-wrap: break-word;
-    margin-top: 20px;
-    /* Default text color for placeholder handled by #messageDisplayArea p below */
+    margin-top: 20px; /* Spacing from button */
+    line-height: 1.6; /* Ensure body's line-height is inherited or set */
 }
 
 #messageDisplayArea p {
     margin: 0;
-    color: #757575; /* Muted gray for placeholder text like "Your retrieved message..." */
+    color: #777777; /* Clear but muted gray for placeholder */
     /* Script.js will override color for actual success (green) or error (red) messages */
 }
 
