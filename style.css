@@ -1,0 +1,104 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+.section {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+textarea#messageInput,
+input#codeInput {
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea#messageInput {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.code-display {
+    text-align: center;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+#accessCodeDisplay {
+    font-size: 1.5em;
+    color: #28a745;
+    letter-spacing: 2px;
+}
+
+#messageDisplayArea {
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    min-height: 50px;
+    word-wrap: break-word;
+}
+
+#messageDisplayArea p {
+    margin: 0;
+    color: #555;
+}
+
+/* Basic error styling - can be applied via JS */
+.error-text {
+    color: red;
+    font-size: 0.9em;
+    text-align: center;
+    margin-bottom: 10px;
+}

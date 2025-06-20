@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Message Sharing</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Supabase library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Secure Message</h1>
+
+        <div class="section">
+            <h2>Save Your Message</h2>
+            <textarea id="messageInput" placeholder="Write your secret message here..."></textarea>
+            <button id="saveMessageButton">Save Message & Get Code</button>
+            <div class="code-display">
+                <p>Your 9-digit code:</p>
+                <strong id="accessCodeDisplay">- - - - - - - - -</strong>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Read Your Message</h2>
+            <input type="text" id="codeInput" placeholder="Enter 9-digit code" maxlength="9">
+            <button id="readMessageButton">Read Message</button>
+            <div id="messageDisplayArea">
+                <p>Your retrieved message will appear here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
