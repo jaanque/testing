@@ -7,12 +7,18 @@
 const SUPABASE_URL = 'https://ukklianxnqsvbbcdwrep.supabase.co'; // <-- Replace this
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVra2xpYW54bnFzdmJiY2R3cmVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAzNzgxNDMsImV4cCI6MjA2NTk1NDE0M30.-fAOjri2cLNcg2G-7wyThMy4451Opk8cfWwzkuT1xMY'; // <-- Replace this
 
-let supabase;
+let supabaseClient; // Renamed to avoid confusion
 try {
-    supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    // The global 'supabase' object is provided by the Supabase CDN script
+    // We destructure createClient from it.
+    const { createClient } = supabase;
+    if (typeof createClient !== 'function') {
+        throw new Error("Supabase createClient function not found. Ensure Supabase JS v2 library is loaded correctly.");
+    }
+    supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 } catch (e) {
-    console.error("Error initializing Supabase client. Make sure you have replaced YOUR_SUPABASE_URL and YOUR_SUPABASE_ANON_KEY in script.js", e);
-    alert("Could not connect to the database. Please check the console for more details. The developer needs to configure Supabase credentials.");
+    console.error("Error initializing Supabase client:", e);
+    alert("Could not connect to the database. Please check the console for more details. Ensure Supabase URL and Key are correct and the library is loaded.");
 }
 
 
@@ -67,7 +73,7 @@ console.log("Access code function ready:", generateAccessCode());
 // -----------------------------------------------------------------------------
 if (saveMessageButton) {
     saveMessageButton.addEventListener('click', async () => {
-        if (!supabase) {
+        if (!supabaseClient) {
             showFeedback(accessCodeDisplay, "Database not connected. Admin: Check credentials.", 'error');
             console.error("Supabase client not initialized.");
             return;
@@ -92,7 +98,7 @@ if (saveMessageButton) {
         const accessCode = generateAccessCode();
 
         try {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('messages') // Assuming your table is named 'messages'
                 .insert([{ message_text: messageText, access_code: accessCode }])
                 .select(); // .select() is optional here, but can be useful
@@ -134,7 +140,7 @@ if (saveMessageButton) {
 // -----------------------------------------------------------------------------
 if (readMessageButton) {
     readMessageButton.addEventListener('click', async () => {
-        if (!supabase) {
+        if (!supabaseClient) {
             showFeedback(messageDisplayArea, "Database not connected. Admin: Check credentials.", 'error');
             console.error("Supabase client not initialized.");
             return;
@@ -155,7 +161,7 @@ if (readMessageButton) {
 
         try {
             // 1. Fetch the message
-            const { data: messages, error: fetchError } = await supabase
+            const { data: messages, error: fetchError } = await supabaseClient
                 .from('messages')
                 .select('id, message_text') // Select id for deletion, and message_text
                 .eq('access_code', enteredCode)
@@ -183,7 +189,7 @@ if (readMessageButton) {
             // 2. Delete the message
             // We use the messageId for a more precise deletion, if available.
             // Otherwise, could delete by access_code again but ID is safer if codes weren't strictly unique.
-            const { error: deleteError } = await supabase
+            const { error: deleteError } = await supabaseClient
                 .from('messages')
                 .delete()
                 .eq(messageId ? 'id' : 'access_code', messageId ? messageId : enteredCode);
