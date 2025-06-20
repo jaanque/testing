@@ -4,60 +4,66 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #ffffff; /* Arc-like white background */
+    background-color: #f7f8fa; /* Very light gray for SaaS look */
     margin: 0;
-    padding: 20px; /* Padding for content if window is very small */
-    color: #1a1a1a; /* Strong dark gray for text */
+    padding: 20px;
+    color: #333333; /* Refined dark text color */
     line-height: 1.6;
-    /* font-size: 16px; /* Explicit base font size if needed */
+    font-size: 16px; /* Explicit base font size */
 }
 
 .container {
-    background-color: #ffffff; /* Matches body, shadow defines it */
-    padding: 50px 60px; /* More generous padding */
-    border-radius: 16px; /* Softer corners */
-    box-shadow: 0 6px 24px rgba(0,0,0,0.07); /* Subtle shadow */
+    background-color: #ffffff; /* White container */
+    padding: 50px 60px; /* Generous padding */
+    border-radius: 8px; /* Moderately rounded corners */
+    /* box-shadow removed */
+    border: 1px solid #e0e0e0; /* Subtle border */
     width: 100%;
-    max-width: 580px; /* Slightly adjusted max-width */
+    max-width: 900px; /* Significantly wider */
+    margin: 30px auto; /* Centering and spacing from viewport edges */
 }
 
 h1 {
-    font-size: 2.75em; /* Approx 44px */
-    font-weight: 700; /* Bold */
-    color: inherit;
+    font-size: 2.25rem; /* 36px */
+    font-weight: 600; /* Semibold for a cleaner SaaS look */
+    color: #111827; /* Tailwind gray 900 */
     text-align: center;
-    margin-bottom: 1.25em;
-}
-
-h2 {
-    font-size: 1.625em; /* Approx 26px */
-    font-weight: 700; /* Bold */
-    color: inherit;
-    text-align: center;
-    margin-top: 2em;
     margin-bottom: 1em;
 }
 
-p {
-    font-size: 1.0625em; /* Approx 17px for better readability */
-    color: #404040; /* Softer dark gray */
-    line-height: 1.7; /* Slightly more line height for 17px */
-    margin-bottom: 1.25em;
+h2 { /* General H2, overridden by .section h2 for specificity */
+    font-size: 1.5rem; /* 24px */
+    font-weight: 600; /* Semibold */
+    color: #1f2937; /* Tailwind gray 800 */
+    text-align: center;
+    margin-top: 2em; /* Default top margin for general h2 */
+    margin-bottom: 1em;
+}
+
+p { /* General paragraph styling */
+    font-size: 1rem; /* 16px */
+    line-height: 1.6;
+    color: #4b5563; /* Tailwind gray 600 */
+    margin-bottom: 1em;
 }
 
 /* Ensure specific paragraph stylings like in messageDisplayArea are handled correctly */
-#messageDisplayArea p {
-    margin: 0; /* Overrides the general p margin-bottom for this specific area */
-    color: #757575; /* This was already updated for placeholder, keep it or make it inherit from new p */
-    /* If inheriting, it will become #404040. Let's keep it specific for placeholder */
+#messageDisplayArea p { /* For placeholder text */
+    margin: 0;
+    font-size: 1rem; /* Match general paragraph */
+    line-height: 1.6; /* Match general paragraph */
+    color: #6b7280; /* Tailwind gray 500 for placeholder */
 }
 
 /* hr ruleset removed */
 
-.section {
-    margin-bottom: 40px; /* Increased margin for separation */
-    padding-bottom: 10px; /* Reduced padding, rely on element margins within section */
-    /* border-bottom removed */
+.section { /* Applies to "Save Message" and "Read Message" sections */
+    background-color: #ffffff;
+    border: 1px solid #e7e9ec;
+    padding: 40px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+    /* padding-bottom will be part of the 40px above */
 }
 
 .section:last-child {
@@ -69,28 +75,27 @@ p {
 textarea#messageInput,
 input#codeInput {
     font-family: inherit;
-    font-size: 1em; /* Matches base paragraph text */
-    padding: 15px 18px; /* Increased padding */
-    margin-bottom: 20px; /* Adequate spacing */
-    border: 1px solid #e0e0e0; /* Subtle border */
-    border-radius: 10px; /* Softer, modern look */
+    font-size: 1em;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #d1d5db; /* Tailwind gray 300 */
+    border-radius: 6px; /* Moderately rounded for SaaS */
     width: 100%;
     box-sizing: border-box;
-    background-color: #f9f9f9; /* Very light gray for slight distinction */
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: #ffffff;
+    transition: border-color 0.15s ease-in-out;
 }
 
 textarea#messageInput::placeholder,
 input#codeInput::placeholder {
-    color: #999999; /* Clear but not too faint gray */
-    opacity: 1; /* Ensure visibility */
+    color: #9ca3af; /* Tailwind gray 400 */
+    opacity: 1;
 }
 
 textarea#messageInput:focus,
 input#codeInput:focus {
     outline: none;
-    border-color: #007aff; /* Clear accent */
-    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15); /* Subtle glow */
+    border-color: #2563eb; /* Tailwind blue 600 */
 }
 
 textarea#messageInput {
@@ -98,38 +103,39 @@ textarea#messageInput {
     resize: vertical;
 }
 
-button {
+button { /* Main action buttons */
     font-family: inherit;
-    font-size: 1em; /* Or 1.0625em for 17px, matching p if p is 17px */
-    font-weight: 600; /* Semibold */
-    padding: 15px 25px; /* Generous padding */
-    background-color: #1a1a1a; /* Strong dark call to action */
+    font-size: 1em;
+    font-weight: 500; /* Medium */
+    padding: 12px 20px;
+    background-color: #2563eb; /* Tailwind blue 600 */
     color: #ffffff;
-    border: none;
-    border-radius: 10px; /* Match inputs */
+    border: 1px solid transparent;
+    border-radius: 6px; /* Match inputs */
     cursor: pointer;
     display: block;
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 20px;
     text-align: center;
-    transition: background-color 0.15s ease-in-out, transform 0.1s ease-in-out;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
 button:hover {
-    background-color: #333333; /* Slightly lighter for hover */
+    background-color: #1d4ed8; /* Tailwind blue 700 */
 }
 
 button:active {
-    background-color: #000000; /* Darker for active */
-    transform: scale(0.98); /* Subtle press effect */
+    background-color: #1e40af; /* Tailwind blue 800 */
+    /* transform: scale(0.98) removed for flatter SaaS look */
 }
 
 button:disabled {
-    background-color: #f0f0f0;
-    color: #aaaaaa;
+    background-color: #e5e7eb; /* Tailwind gray 200 */
+    color: #9ca3af; /* Tailwind gray 400 */
+    border-color: #e5e7eb;
     cursor: not-allowed;
-    transform: none; /* No press effect when disabled */
+    /* transform: none; already default */
 }
 
 .code-display {
@@ -145,33 +151,31 @@ button:disabled {
 /* Styling for the <p> tag inside .code-display */
 .code-display p {
     margin-bottom: 0.5em; /* Space between "Your 9-digit code:" and the code itself */
-    font-size: 0.9em; /* Slightly smaller for the descriptive text */
-    color: #555555; /* Muted color for descriptive text */
+    font-size: 0.9rem; /* Slightly smaller for the descriptive text */
+    color: #4b5563; /* Consistent with other paragraph text */
 }
 
 #accessCodeDisplay {
-    font-size: 2em; /* Prominent and easily readable */
-    font-weight: 700; /* Bold */
-    color: #1a1a1a; /* Strong dark color, matches h1 */
-    letter-spacing: 3px; /* Distinct digits */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 2rem; /* 32px */
+    font-weight: 600; /* Semibold */
+    color: #111827; /* Tailwind gray 900, very dark */
+    letter-spacing: 3px;
 }
 
-#messageDisplayArea {
-    padding: 15px 18px; /* Consistent with inputs */
-    background-color: #f9f9f9; /* Consistent with inputs */
-    border: 1px solid #e0e0e0; /* Consistent with inputs */
-    border-radius: 10px; /* Consistent with inputs */
-    min-height: 80px; /* Adequate min-height */
+#messageDisplayArea { /* Container for retrieved message */
+    padding: 15px 18px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    min-height: 80px;
     word-wrap: break-word;
-    margin-top: 20px; /* Spacing from button */
-    line-height: 1.6; /* Ensure body's line-height is inherited or set */
+    margin-top: 20px;
+    /* line-height will be inherited from #messageDisplayArea p now */
 }
 
-#messageDisplayArea p {
-    margin: 0;
-    color: #777777; /* Clear but muted gray for placeholder */
-    /* Script.js will override color for actual success (green) or error (red) messages */
-}
+/* #messageDisplayArea p is already defined above for placeholder */
+/* Actual success message text color will be set by JS */
 
 /* Basic error styling - can be applied via JS */
 .error-text {
@@ -183,27 +187,34 @@ button:disabled {
 
 /* How It Works Section Styles */
 .how-it-works-section {
-    /* Uses .section class for base margin/padding, add specifics if needed */
-    margin-top: 40px; /* Add some top margin to separate from previous section */
+    /* Inherits .section styles, so it gets the white background, border, padding, radius */
+    /* We can add specific margin-top if needed, but .section already has margin-bottom */
+    /* If it's the last section, its margin-bottom will be handled by .section:last-child or general flow */
 }
 
-.how-it-works-section h2 {
-    margin-bottom: 25px; /* Space below the "How It Works" title */
+/* General styling for H2 within any .section, including .how-it-works-section */
+.section h2 { /* Section titles: "Save Your Message", "Read Your Message", "How It Works" */
+    font-size: 1.25rem; /* 20px - More subdued for SaaS sections */
+    font-weight: 600; /* Semibold */
+    color: #1f2937; /* Tailwind gray 800 */
+    margin-top: 0; /* Section padding will handle top space */
+    margin-bottom: 1.25em; /* Approx 25px */
 }
+
 
 .steps-container {
     display: flex;
     flex-direction: column; /* Stack steps vertically */
-    gap: 25px; /* Space between steps */
+    gap: 20px; /* Adjusted space between steps */
 }
 
 .step {
     display: flex;
     align-items: flex-start; /* Align icon with the start of the text block */
-    background-color: #f9f9f9; /* Same as input fields for consistency */
+    background-color: #fbfcfe; /* Very subtle off-white for step cards */
     padding: 20px;
-    border-radius: 12px; /* Match input/button border-radius */
-    border: 1px solid #e0e0e0; /* Match input/button border */
+    border-radius: 8px; /* Slightly softer radius for cards */
+    border: 1px solid #e9eef2; /* Light border for step cards */
 }
 
 .step-icon {
@@ -214,57 +225,58 @@ button:disabled {
     text-align: center;
 }
 
-.step p {
-    margin: 0; /* Remove default paragraph margins within a step */
-    font-size: 0.95em; /* Slightly smaller text for steps if desired */
+.step p { /* Text within "How It Works" steps */
+    margin: 0;
+    font-size: 1rem; /* Consistent with general paragraph text */
     line-height: 1.6;
-    color: #333333;
+    color: #4b5563; /* Consistent paragraph color */
 }
 
-.step p strong {
-    font-weight: 600; /* Make the step title bold */
-    color: #1a1a1a; /* Darker color for the step title */
-    display: block; /* Make strong take its own line or ensure space */
-    margin-bottom: 5px; /* Space between step title and description */
+.step p strong { /* Titles within "How It Works" steps */
+    font-size: 1rem; /* Match step paragraph text or slightly larger if needed */
+    font-weight: 600; /* Semibold */
+    color: #374151; /* Tailwind gray 700 */
+    display: block;
+    margin-bottom: 0.25em; /* Space between step title and description */
 }
 
 /* Copy Code Button Styles */
 #copyCodeButton {
-    background-color: #e9ecef; /* A lighter, secondary button style */
-    color: #495057;
+    background-color: #f3f4f6; /* Tailwind gray 100 */
+    color: #374151; /* Tailwind gray 700 */
     padding: 6px 12px;
-    font-size: 0.85em;
+    font-size: 0.9em;
     font-weight: 500;
-    border-radius: 8px;
-    border: 1px solid #ced4da;
-    margin-left: 10px; /* Space next to the code display */
+    border-radius: 6px; /* Match other form elements */
+    border: 1px solid #d1d5db; /* Tailwind gray 300 */
+    margin-left: 10px;
     cursor: pointer;
-    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
-    vertical-align: middle; /* Align with the strong access code text */
-    width: auto; /* Override full-width from general button style */
-    display: inline-flex; /* For aligning icon and text inside */
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+    vertical-align: middle;
+    width: auto;
+    display: inline-flex;
     align-items: center;
-    gap: 6px; /* Space between icon and text in copy button */
+    gap: 6px;
 }
 
 #copyCodeButton:hover {
-    background-color: #d1d9e0;
-    color: #343a40;
+    background-color: #e5e7eb; /* Tailwind gray 200 */
+    border-color: #9ca3af; /* Tailwind gray 400 */
 }
 
 #copyCodeButton:active {
-    transform: scale(0.97); /* Slight press effect */
+    /* transform: scale(0.97) removed */
 }
 
 #copyCodeButton .copy-icon {
-    font-size: 1.1em; /* Adjust icon size within button */
+    font-size: 1.1em;
 }
 
 /* Style for when code is copied - can be applied via JS */
 #copyCodeButton.copied {
-    background-color: #28a745; /* Green background */
+    background-color: #16a34a; /* Tailwind green 600 */
     color: #ffffff;
-    border-color: #28a745;
+    border-color: #16a34a; /* Match background */
 }
 
 #copyCodeButton.copied .copy-icon {
