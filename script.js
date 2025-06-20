@@ -217,3 +217,92 @@ if (readMessageButton) {
 } else {
     console.error("Read Message Button not found in the DOM.");
 }
+
+// -----------------------------------------------------------------------------
+// Event Listener for Copy Code Button
+// -----------------------------------------------------------------------------
+const copyCodeButton = document.getElementById('copyCodeButton');
+const accessCodeDisplayForCopy = document.getElementById('accessCodeDisplay'); // Already defined, but good to be explicit
+
+if (copyCodeButton && accessCodeDisplayForCopy) {
+    copyCodeButton.addEventListener('click', async () => {
+        const codeToCopy = accessCodeDisplayForCopy.textContent;
+        const originalButtonText = copyCodeButton.querySelector('.copy-text').textContent;
+        const originalButtonIcon = copyCodeButton.querySelector('.copy-icon').textContent;
+
+        // Check if there's a valid code to copy (not the placeholder or an error message)
+        if (codeToCopy && codeToCopy.replace(/\s/g, '') !== '---------' && !accessCodeDisplayForCopy.style.color.includes('red')) {
+            try {
+                await navigator.clipboard.writeText(codeToCopy);
+
+                // Visual feedback: Change button text/icon and style
+                copyCodeButton.querySelector('.copy-text').textContent = 'Copied!';
+                copyCodeButton.querySelector('.copy-icon').textContent = '✅'; // Checkmark icon
+                copyCodeButton.classList.add('copied');
+                copyCodeButton.disabled = true;
+
+                // Revert button state after a short delay
+                setTimeout(() => {
+                    copyCodeButton.querySelector('.copy-text').textContent = originalButtonText;
+                    copyCodeButton.querySelector('.copy-icon').textContent = originalButtonIcon;
+                    copyCodeButton.classList.remove('copied');
+                    copyCodeButton.disabled = false;
+                }, 2000); // Revert after 2 seconds
+
+            } catch (err) {
+                console.error('Failed to copy code: ', err);
+                // Optionally, provide error feedback to the user here
+                // For instance, temporarily change button text to "Error copying"
+                copyCodeButton.querySelector('.copy-text').textContent = 'Error!';
+                setTimeout(() => {
+                    copyCodeButton.querySelector('.copy-text').textContent = originalButtonText;
+                }, 2000);
+            }
+        } else {
+            // No valid code to copy - perhaps briefly indicate this or do nothing
+            console.log("No valid code to copy.");
+            copyCodeButton.disabled = true; // Disable if no code
+            setTimeout(() => {
+                 copyCodeButton.disabled = false;
+            }, 1000);
+        }
+    });
+} else {
+    if (!copyCodeButton) console.error("Copy Code Button not found in the DOM.");
+    if (!accessCodeDisplayForCopy) console.error("Access Code Display element not found for copy functionality.");
+}
+
+// Initially disable the copy button if there's no code
+if (copyCodeButton && accessCodeDisplayForCopy) {
+    const initialCode = accessCodeDisplayForCopy.textContent;
+    if (!initialCode || initialCode.replace(/\s/g, '') === '---------') {
+        copyCodeButton.disabled = true;
+    }
+}
+
+// Re-enable copy button when a new code is generated
+// We need to hook into the saveMessageButton's success logic.
+// This is a bit tricky by just appending. Ideally, this logic would be integrated
+// into the existing saveMessageButton event listener.
+
+// For now, let's add a MutationObserver as a more robust way to enable/disable copy button.
+if (copyCodeButton && accessCodeDisplayForCopy) {
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.type === 'childList' || mutation.type === 'characterData') {
+                const currentCode = accessCodeDisplayForCopy.textContent;
+                if (currentCode && currentCode.replace(/\s/g, '') !== '---------' && !accessCodeDisplayForCopy.style.color.includes('red')) {
+                    copyCodeButton.disabled = false;
+                } else {
+                    copyCodeButton.disabled = true;
+                }
+            }
+        });
+    });
+
+    observer.observe(accessCodeDisplayForCopy, {
+        childList: true, // Listen to changes in child nodes (the text itself)
+        characterData: true, // Listen to changes in text content
+        subtree: true // Needed for characterData if text is in a child node
+    });
+}
