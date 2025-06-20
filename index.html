@@ -19,6 +19,10 @@
             <div class="code-display">
                 <p>Your 9-digit code:</p>
                 <strong id="accessCodeDisplay">- - - - - - - - -</strong>
+                <button id="copyCodeButton" aria-label="Copy access code" title="Copy code to clipboard">
+                    <span class="copy-icon">📋</span> <!-- Clipboard icon -->
+                    <span class="copy-text">Copy</span>
+                </button>
             </div>
         </div>
 
@@ -28,6 +32,24 @@
             <button id="readMessageButton">Read Message</button>
             <div id="messageDisplayArea">
                 <p>Your retrieved message will appear here.</p>
+            </div>
+        </div>
+
+        <div class="how-it-works-section section"> <!-- Added .section for consistent spacing/styling if desired -->
+            <h2>How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <span class="step-icon">📝</span>
+                    <p><strong>Write & Get Code:</strong> Type your secret message and hit 'Save' to get a unique 9-digit code.</p>
+                </div>
+                <div class="step">
+                    <span class="step-icon">📤</span>
+                    <p><strong>Share Code:</strong> Share the generated code securely with your recipient.</p>
+                </div>
+                <div class="step">
+                    <span class="step-icon">🗑️</span> <!-- Or 👁️‍🗨️ then 🗑️ if we can style it -->
+                    <p><strong>Read & Auto-Delete:</strong> The recipient enters the code to view the message. It's then automatically deleted forever.</p>
+                </div>
             </div>
         </div>
     </div>

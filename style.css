@@ -180,3 +180,93 @@ button:disabled {
     text-align: center;
     margin-bottom: 10px;
 }
+
+/* How It Works Section Styles */
+.how-it-works-section {
+    /* Uses .section class for base margin/padding, add specifics if needed */
+    margin-top: 40px; /* Add some top margin to separate from previous section */
+}
+
+.how-it-works-section h2 {
+    margin-bottom: 25px; /* Space below the "How It Works" title */
+}
+
+.steps-container {
+    display: flex;
+    flex-direction: column; /* Stack steps vertically */
+    gap: 25px; /* Space between steps */
+}
+
+.step {
+    display: flex;
+    align-items: flex-start; /* Align icon with the start of the text block */
+    background-color: #f9f9f9; /* Same as input fields for consistency */
+    padding: 20px;
+    border-radius: 12px; /* Match input/button border-radius */
+    border: 1px solid #e0e0e0; /* Match input/button border */
+}
+
+.step-icon {
+    font-size: 1.8em; /* Adjust size of Unicode icons */
+    margin-right: 18px;
+    line-height: 1.4; /* Adjust for better vertical alignment with text */
+    min-width: 30px; /* Ensure icons have some space, prevents text jumping */
+    text-align: center;
+}
+
+.step p {
+    margin: 0; /* Remove default paragraph margins within a step */
+    font-size: 0.95em; /* Slightly smaller text for steps if desired */
+    line-height: 1.6;
+    color: #333333;
+}
+
+.step p strong {
+    font-weight: 600; /* Make the step title bold */
+    color: #1a1a1a; /* Darker color for the step title */
+    display: block; /* Make strong take its own line or ensure space */
+    margin-bottom: 5px; /* Space between step title and description */
+}
+
+/* Copy Code Button Styles */
+#copyCodeButton {
+    background-color: #e9ecef; /* A lighter, secondary button style */
+    color: #495057;
+    padding: 6px 12px;
+    font-size: 0.85em;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    margin-left: 10px; /* Space next to the code display */
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+    vertical-align: middle; /* Align with the strong access code text */
+    width: auto; /* Override full-width from general button style */
+    display: inline-flex; /* For aligning icon and text inside */
+    align-items: center;
+    gap: 6px; /* Space between icon and text in copy button */
+}
+
+#copyCodeButton:hover {
+    background-color: #d1d9e0;
+    color: #343a40;
+}
+
+#copyCodeButton:active {
+    transform: scale(0.97); /* Slight press effect */
+}
+
+#copyCodeButton .copy-icon {
+    font-size: 1.1em; /* Adjust icon size within button */
+}
+
+/* Style for when code is copied - can be applied via JS */
+#copyCodeButton.copied {
+    background-color: #28a745; /* Green background */
+    color: #ffffff;
+    border-color: #28a745;
+}
+
+#copyCodeButton.copied .copy-icon {
+    /* Optionally change icon on copy, e.g. to a checkmark, via JS textContent change */
+}
