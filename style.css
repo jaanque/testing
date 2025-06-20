@@ -1,32 +1,66 @@
 body {
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 90vh;
-    background-color: #f4f4f4;
+    min-height: 100vh;
+    background-color: #f5f5f7;
     margin: 0;
     padding: 20px;
+    color: #1d1d1f;
+    line-height: 1.6;
 }
 
 .container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
 }
 
-h1, h2 {
+h1 {
+    font-size: 2.25em; /* Approx 36px */
+    font-weight: 600; /* Semibold */
+    color: inherit; /* Inherits #1d1d1f from body */
     text-align: center;
-    color: #333;
+    margin-bottom: 0.75em;
+}
+
+h2 {
+    font-size: 1.75em; /* Approx 28px */
+    font-weight: 600; /* Semibold */
+    color: inherit; /* Inherits #1d1d1f from body */
+    text-align: center;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+
+p {
+    font-size: 1em; /* Approx 16px, inherits line-height from body */
+    color: #333333; /* Slightly lighter than headings for less emphasis */
+    margin-bottom: 1em;
+}
+
+/* Ensure specific paragraph stylings like in messageDisplayArea are handled correctly */
+#messageDisplayArea p {
+    margin: 0; /* Overrides the general p margin-bottom for this specific area */
+    color: #555; /* Specific color for retrieved message text */
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #e5e5e5; /* Lighter than #eee */
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .section {
-    margin-bottom: 25px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 30px; /* Increased margin */
+    padding-bottom: 30px; /* Increased padding */
+    border-bottom: 1px solid #e5e5e5; /* Lighter border */
 }
 
 .section:last-child {
@@ -37,12 +71,29 @@ h1, h2 {
 
 textarea#messageInput,
 input#codeInput {
-    width: calc(100% - 22px); /* Account for padding and border */
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    font-family: inherit;
+    font-size: 1em;
+    padding: 12px 15px;
+    margin-bottom: 20px; /* Increased margin */
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+textarea#messageInput::placeholder,
+input#codeInput::placeholder {
+    color: #ababab;
+    opacity: 1;
+}
+
+textarea#messageInput:focus,
+input#codeInput:focus {
+    border-color: #007aff;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+    outline: none;
 }
 
 textarea#messageInput {
@@ -51,48 +102,67 @@ textarea#messageInput {
 }
 
 button {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 18px;
+    font-family: inherit;
+    font-size: 1.0625em; /* 17px */
+    font-weight: 500; /* Medium */
+    padding: 14px 20px;
+    background-color: #007aff; /* Apple blue */
+    color: #ffffff;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    display: block;
+    display: block; /* Already block, ensure it stays */
     width: 100%;
-    margin-bottom: 15px;
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Increased margin */
+    transition: background-color 0.2s ease-in-out;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #005ec4; /* Darker blue */
+}
+
+button:active {
+    background-color: #00408a; /* Even darker blue */
+}
+
+button:disabled {
+    background-color: #e9ecef;
+    color: #adb5bd;
+    cursor: not-allowed;
 }
 
 .code-display {
     text-align: center;
-    padding: 10px;
-    background-color: #e9ecef;
-    border-radius: 4px;
-    margin-top: 10px;
+    padding: 12px 15px;
+    background-color: #f8f9fa; /* Lighter and more neutral */
+    border-radius: 8px; /* Match other elements */
+    margin-top: 20px;
 }
 
 #accessCodeDisplay {
-    font-size: 1.5em;
-    color: #28a745;
-    letter-spacing: 2px;
+    font-size: 1.75em; /* Prominent size */
+    font-weight: 600; /* Semibold */
+    color: #1d1d1f; /* Default dark color, JS will change for success/error */
+    letter-spacing: 3px; /* Slightly increased spacing */
+    /* Add small margin if p tag isn't enough, e.g., margin: 5px 0; */
 }
 
 #messageDisplayArea {
-    padding: 15px;
-    background-color: #f8f9fa;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    min-height: 50px;
+    padding: 15px 20px; /* Adjusted padding */
+    background-color: #f8f9fa; /* Consistent with code-display */
+    border: 1px solid #e5e5e5; /* Keep subtle border */
+    border-radius: 8px; /* Match other elements */
+    min-height: 60px; /* Slightly increased min-height */
     word-wrap: break-word;
+    margin-top: 20px;
+    /* Default text color for placeholder handled by #messageDisplayArea p below */
 }
 
 #messageDisplayArea p {
     margin: 0;
-    color: #555;
+    color: #757575; /* Muted gray for placeholder text like "Your retrieved message..." */
+    /* Script.js will override color for actual success (green) or error (red) messages */
 }
 
 /* Basic error styling - can be applied via JS */
